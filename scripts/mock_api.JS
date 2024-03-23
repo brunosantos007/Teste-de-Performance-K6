@@ -1,20 +1,27 @@
 import http from "k6/http";
-import { check, group } from "k6";
+import { check } from "k6";
+import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
 
 export const options = {
     vus: 1,
-    duration: '3s'
+    duration: '30s',
+    thresholds:{
+        checks: ['rate > 0.99']
+    }
 }
 
-export default function(){
-    group('users', function(){
-        const response1 = http.get("https://648cf7d98620b8bae7ed81b7.mockapi.io/users");
-        const response2 = http.get("https://648cf7d98620b8bae7ed81b7.mockapi.io/users/1");
-        check(response1,{
-            'Status Code: 200': (r) => r.status === 200
-        });
-        check(response2,{
-            'Status Code: 200': (r) => r.status === 200
-        });
-    });
+export default function() {
+    const BASE_URL = 'https://test-api.k6.io/public/crocodiles';
+
+    const res = http.get(BASE_URL);
+
+    check(res,{
+        'Status Code 200': (r) => r.status === 200
+    })
+}
+
+export function handleSummary(data) {
+    return {
+      "Relatorio_k6.html": htmlReport(data),
+    };
 }
