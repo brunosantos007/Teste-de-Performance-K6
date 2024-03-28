@@ -6,10 +6,12 @@ jobs:
   build: 
     name: K6 load test
     runs-on: ubuntu-latest
-    container: node:20
     steps:
-      - name: step 1 - checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
 
       - name: step 2 - run k6 load test
         uses: grafana/k6-action@v0.2.0
