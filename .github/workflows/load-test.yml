@@ -4,7 +4,7 @@ permissions:
   contents: write
 jobs:
   build: 
-    name: K6 load test
+    name: Teste-de-Performance-K6
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
