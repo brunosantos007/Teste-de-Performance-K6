@@ -1,14 +1,16 @@
 name: K6 load test
 on: [push]
+permissions:
+  contents: write
 jobs:
-  build:
+  build: 
     name: K6 load test
     runs-on: ubuntu-latest
     steps:
-      - name: Step 1 - checkout
+      - name: step 1 - checkout
         uses: actions/checkout@v3
 
-      - name: Step 2 - run k6 local test
+      - name: step 2 - run k6 load test
         uses: grafana/k6-action@v0.2.0
-        with:
+        with: 
           filename: scripts/mock_api.js
