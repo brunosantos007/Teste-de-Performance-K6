@@ -7,9 +7,8 @@ jobs:
     name: Teste-de-Performance-K6
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js 20.x
-        uses: actions/setup-node@v4
+      - name: step 1 - checkout
+        uses: actions/checkout@v4
 
       - name: step 2 - run k6 load test
         uses: grafana/k6-action@v0.2.0
