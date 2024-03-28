@@ -1,4 +1,4 @@
-name: K6 load test
+name: Teste-de-Performance-K6
 on: [push]
 permissions:
   contents: write
